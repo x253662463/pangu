@@ -21,7 +21,6 @@ Class App {
         require ROOT_DIR . '/Frame/common/functions.php';
         spl_autoload_register('Frame\APP::autoload');
 
-
         register_shutdown_function('Frame\APP::fetalError');
         set_error_handler('Frame\APP::Error');
         set_exception_handler('Frame\APP::Exception');
@@ -37,17 +36,12 @@ Class App {
      * @throws \Exception
      */
     public static function autoload($class){
-        $class = str_replace('Frame\\','',$class);
-        if (strpos($class,'\\')){
-            $folder = str_replace('\\','/',$class) . '.class.php';
-        }else{
-            $folder = $class . '.class.php';
-        }
-        $folder = ROOT_DIR . '\\'. $folder;
+        $class .= '.class.php';
+        $folder = ROOT_DIR . '\\'. $class;
         if (is_file($folder)){
             require $folder;
         }else{
-            throw new \Exception('not found',0);
+            throw new \Exception($folder .' not found',0);
         }
     }
 
