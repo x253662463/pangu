@@ -21,3 +21,21 @@ function filter($params){
     }
     return $params;
 }
+
+
+/**
+ * 格式化错误输出
+ * @param $title string 错误标题
+ * @param $errorNum int 错误号
+ * @param $message string 错误信息
+ * @param $file string 错误文件位置
+ * @param $line int 错误行数
+ */
+function errorOutput($title, $errorNum, $message, $file, $line){
+    header("Content-type: text/html; charset=utf-8");
+    echo "<h1>$title</h1>";
+    echo "Error Number:" . $errorNum . "<br>";
+    echo "Error Message:" . $message . "<br>";
+    echo "Error File:" . $file . "<br>";
+    echo "Error Line:" . $line . "<br>";
+}

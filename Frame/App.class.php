@@ -41,7 +41,7 @@ Class App {
         if (is_file($folder)){
             require $folder;
         }else{
-            throw new \Exception($folder .' not found',0);
+            throw new \Exception('文件[' . $folder .']不存在',0);
         }
     }
 
@@ -67,9 +67,7 @@ Class App {
     public static function fetalError(){
         if ($e = error_get_last()){
             ob_end_clean();
-            echo "Error Message:" . $e['message'] . "<br>";
-            echo "Error File:" . $e['file'] . "<br>";
-            echo "Error Line:" . $e['line'] . "<br>";
+            errorOutput('致命错误',$e['type'],$e['message'],$e['file'],$e['line']);
         };
     }
 
@@ -81,9 +79,7 @@ Class App {
      * @param $errline
      */
     public static function Error($errno, $errstr, $errfile, $errline){
-        echo "Error Message:" . $errstr . "<br>";
-        echo "Error File:" . $errfile . "<br>";
-        echo "Error Line:" . $errline . "<br>";
+        errorOutput('系统错误',$errno,$errstr,$errfile,$errline);
     }
 
     /**
@@ -91,9 +87,7 @@ Class App {
      * @param \Exception $e
      */
     public static function Exception(\Exception $e){
-        echo "Error Message:" . $e->getMessage() . "<br>";
-        echo "Error File:" . $e->getFile() . "<br>";
-        echo "Error Line:" . $e->getLine() . "<br>";
+        errorOutput('异常',$e->getCode(),$e->getMessage(),$e->getFile(),$e->getLine());
     }
 
 }
