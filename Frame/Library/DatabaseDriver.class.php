@@ -12,8 +12,11 @@ use PDO;
 abstract class DatabaseDriver
 {
 
+    //数据库连接实例
     protected $pdo = null;
 
+    //数据库结果实例
+    protected $pdo_result = null;
     //数据库连接操作
     protected $type = '';//数据库类型
     protected $host = '';//主机地址
@@ -33,6 +36,10 @@ abstract class DatabaseDriver
     protected $error = '';
 
 
+    /**
+     * 连接数据库pdo的操作
+     * @return null|PDO
+     */
     public function connect(){
         if (!isset($this->pdo)){
             try{
@@ -45,9 +52,45 @@ abstract class DatabaseDriver
         return $this->pdo;
     }
 
+    /**
+     * 最基础的query操作
+     * @param $sql
+     * @return mixed
+     */
     public function query($sql){
         $sql = isset($sql) ? $sql : $this->sql;
-        $nts = $this->pdo->query($sql);
-        return $nts->fetchAll(PDO::FETCH_ASSOC);
+        $this->pdo_result = $this->pdo->query($sql);
+        return $this->fetchAll();
     }
+
+    /**
+     * 运行系统的exec操作，返回影响的条数
+     * @param $sql
+     * @return int
+     */
+    public function exec($sql){
+        $this->numRows = $this->pdo->exec($sql);
+        if ($this->numRows == false){
+            $this->error();
+        }
+        return $this->numRows;
+    }
+
+    /**
+     * 查询结果格式化处理
+     * @return mixed
+     */
+    public function fetchAll(){
+        return $this->pdo_result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     *数据库错误处理
+     */
+    public function error(){
+        $error = $this->pdo->errorInfo();
+        errorOutput("数据库错误",$error[0],$error[2],__FILE__,__LINE__);
+    }
+
+    //TODO:事务以及多次查询什么的
 }

@@ -14,7 +14,6 @@ class IndexController extends Controller
     public function index(){
 
         $model = new Name();
-        echo $model->getModelName();
     }
 
     public function second(){

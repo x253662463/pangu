@@ -20,7 +20,8 @@ class Model
             'password' => 'root',
             'options' => array()
         ));
-        var_dump($db->query("select * from name",array()));
+        var_dump($db->exec("INSERT INTO `name` VALUES ('','123')"));
+        var_dump($db->query("select * from name"));
     }
 
     public function getModelName(){

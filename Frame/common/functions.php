@@ -38,4 +38,5 @@ function errorOutput($title, $errorNum, $message, $file, $line){
     echo "Error Message:" . $message . "<br>";
     echo "Error File:" . $file . "<br>";
     echo "Error Line:" . $line . "<br>";
+    exit;
 }
