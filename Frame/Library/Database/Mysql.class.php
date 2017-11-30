@@ -9,9 +9,14 @@ use Frame\Library\DatabaseDriver;
 
 class Mysql extends DatabaseDriver
 {
-    public function __construct($config)
-    {
-        $this->config = $config;
+    protected $type = 'mysql';
+
+    public function __construct($config){
+        $this->host = $config['host'];
+        $this->dbname = $config['dbname'];
+        $this->username = $config['username'];
+        $this->password = $config['password'];
+        $this->driver_options = $config['options'];
         $this->connect();
     }
 }

@@ -1,14 +1,20 @@
 <?php
 namespace Controllers;
+use Models\Name;
+
 /**
  * Creator: xie
  * Time: 2017/11/23 17:46
  */
 
-class IndexController
+class IndexController extends Controller
 {
+
+
     public function index(){
-        echo "index123";
+
+        $model = new Name();
+        echo $model->getModelName();
     }
 
     public function second(){
