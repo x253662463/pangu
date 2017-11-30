@@ -20,7 +20,7 @@ class Model
             'password' => 'root',
             'options' => array()
         ));
-        var_dump($db);
+        var_dump($db->query("select * from name",array()));
     }
 
     public function getModelName(){
