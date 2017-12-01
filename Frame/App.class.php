@@ -53,12 +53,16 @@ Class App {
         $input = filter($_REQUEST);
 
         $Controller = isset($input['controller']) ? $input['controller'] : 'Index';
-        $action = isset($input['action']) ? $input['action'] : 'index';
+        $Action = isset($input['action']) ? $input['action'] : 'index';
+
+        define('CONTROLLER_NAME',$Controller);
+        define('ACTION_NAME',$Action);
 
         $controller = 'Controllers\\' . $Controller . 'Controller';
 
         $controller = new $controller();
-        $controller->$action();
+        //TODO:控制器和方法不存在的时候调整报错信息
+        $controller->$Action();
     }
 
     /**
@@ -86,7 +90,7 @@ Class App {
      * 异常处理函数
      * @param \Exception $e
      */
-    public static function Exception(\Exception $e){
+    public static function Exception($e){
         errorOutput('异常',$e->getCode(),$e->getMessage(),$e->getFile(),$e->getLine());
     }
 

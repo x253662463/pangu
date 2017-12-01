@@ -13,10 +13,13 @@ class IndexController extends Controller
 
     public function index(){
 
-        $model = new Name();
+//        $model = new Name();
+        $this->assign(array('contain' => '进入了'));
+        $this->show();
     }
 
     public function second(){
+        $this->show();
         echo 'second';
     }
 }
