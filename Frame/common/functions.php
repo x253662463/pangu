@@ -40,3 +40,9 @@ function errorOutput($title, $errorNum, $message, $file, $line){
     echo "Error Line:" . $line . "<br>";
     exit;
 }
+
+
+function getRealIp(){
+    //TODO:重写获取真正ip地址函数
+    return "127.0.0.1";
+}
