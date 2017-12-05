@@ -28,11 +28,6 @@ Class App {
 
     public function initPaths(){
         $this->paths['Frame'] = $this->rootPath . 'Frame' . DIRECTORY_SEPARATOR;
-
-        $this->paths['Frame'] = $this->rootPath . 'Frame';
-        $this->paths['Frame'] = $this->rootPath . 'Frame';
-        $this->paths['Frame'] = $this->rootPath . 'Frame';
-        $this->paths['Frame'] = $this->rootPath . 'Frame';
     }
 
     /**
