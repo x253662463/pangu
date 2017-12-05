@@ -5,6 +5,7 @@
  */
 
 namespace Frame;
+use Frame\Library\Autoload;
 
 /**
  * 框架主类
@@ -13,12 +14,33 @@ namespace Frame;
  */
 Class App {
 
+    const VERSION = '0.0.0';
+
+    protected $rootPath;
+
+    protected $paths;
+
+    public function __construct($rootPath){
+        $this->rootPath = $rootPath . DIRECTORY_SEPARATOR;
+        $this->run();
+    }
+
+
+    public function initPaths(){
+        $this->paths['Frame'] = $this->rootPath . 'Frame' . DIRECTORY_SEPARATOR;
+
+        $this->paths['Frame'] = $this->rootPath . 'Frame';
+        $this->paths['Frame'] = $this->rootPath . 'Frame';
+        $this->paths['Frame'] = $this->rootPath . 'Frame';
+        $this->paths['Frame'] = $this->rootPath . 'Frame';
+    }
+
     /**
      *程序默认运行函数
      */
-    static public function run()
-    {
-        require ROOT_DIR . '/Frame/common/functions.php';
+    public function run(){
+
+        require  $this->rootPath . '/Frame/common/functions.php';
         spl_autoload_register('Frame\APP::autoload');
 
         register_shutdown_function('Frame\APP::fetalError');
@@ -35,9 +57,9 @@ Class App {
      * @param $class
      * @throws \Exception
      */
-    public static function autoload($class){
+    public function autoload($class){
         $class .= '.class.php';
-        $folder = ROOT_DIR . '\\'. $class;
+        $folder = $this->rootPath . '\\'. $class;
         if (is_file($folder)){
             require $folder;
         }else{

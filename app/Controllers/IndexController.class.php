@@ -1,5 +1,7 @@
 <?php
 namespace Controllers;
+use Frame\Library\File;
+use Frame\Library\Log;
 use Models\Name;
 
 /**
@@ -12,7 +14,9 @@ class IndexController extends Controller
 
 
     public function index(){
-
+        $file = new File();
+        echo $file->get('../../123.php');
+//        File::get("./././index.php");
 //        $model = new Name();
         $this->assign(array('contain' => '进入了'));
         $this->show();

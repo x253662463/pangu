@@ -5,10 +5,8 @@
  */
 
 
-define('ROOT_DIR',dirname(__FILE__) . DIRECTORY_SEPARATOR);
-
-date_default_timezone_set('PRC');
 
 require 'Frame\App.class.php';
-\Frame\App::run();
+$app = new \Frame\App(__DIR__);
+$app->run();
 
