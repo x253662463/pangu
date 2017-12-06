@@ -18,7 +18,7 @@ class Router
         define('CONTROLLER_NAME',$Controller);
         define('ACTION_NAME',$Action);
 
-        $controller = 'Controllers\\' . $Controller . 'Controller';
+        $controller = 'App\\Controllers\\' . $Controller . 'Controller';
 
         $controller = new $controller();
         //TODO:控制器和方法不存在的时候调整报错信息

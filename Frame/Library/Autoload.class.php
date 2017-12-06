@@ -27,6 +27,11 @@ class Autoload
         $this->initPaths();
 
         $this->register();
+
+
+
+
+
     }
 
 
