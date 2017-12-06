@@ -5,8 +5,12 @@
  */
 
 
+require 'Frame\Library\Autoload.class.php';
 
-require 'Frame\App.class.php';
-$app = new \Frame\App(__DIR__);
-$app->run();
+new \Frame\Library\Autoload(dirname(__FILE__));
+
+
+$router = new \Frame\Library\Router();
+
+new \Frame\App($router);
 
