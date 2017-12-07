@@ -6,30 +6,15 @@
 
 namespace Frame\Library;
 
-/*
- * 文件处理类
- */
-use Exception;
 
 class File
 {
-    public function isFile($file){
-        if (is_file($file)){
-            return true;
-        }
-        return false;
-    }
-    //TODO:获取文件时是否加锁，目前对锁机制不是很了解
-    public function get($file){
-        if ($this->isFile($file)){
-            return file_get_contents($file);
-        }
-        return false;
-    }
-
-    public function getRequire($file){
-        if ($this->isFile($file)){
-            require $file;
-        }
+    /**
+     * 获取目录文件下多有的文件名
+     * @param $dir
+     * @return 2|array
+     */
+    public function getFiles($dir){
+        return array_slice(scandir($dir),2);
     }
 }

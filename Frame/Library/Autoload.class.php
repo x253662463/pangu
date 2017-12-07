@@ -6,7 +6,11 @@
 
 namespace Frame\Library;
 
-
+/**
+ * 自动加载类
+ * Class Autoload
+ * @package Frame\Library
+ */
 class Autoload
 {
 
@@ -47,12 +51,19 @@ class Autoload
     public function register(){
         spl_autoload_register("Frame\Library\Autoload::autoload");
 
-        $this->requireFunctions();
+        $file = new File();
+        $this->requireFunctions($file);
     }
 
-    public function requireFunctions(){
-        //TODO:需要修改为自动查找方法文件目录下的所有文件
-        require $this->funcPath . 'functions.php';
+    /**
+     * 包含所有方法文件夹下的方法文件
+     * @param File $file
+     */
+    public function requireFunctions(File $file){
+        $function_files = $file->getFiles($this->funcPath);
+        foreach ($function_files as $function_file){
+            require $this->funcPath . $function_file;
+        }
     }
 
     /**
@@ -61,14 +72,12 @@ class Autoload
      * @throws \Exception
      */
     public function autoload($class){
-
-        //TODO:这个方法只限于框架内的类，app内部的类逻辑需要修改
         $class .= '.class.php';
-        $folder = $this->rootPath . '\\'. $class;
-        if (is_file($folder)){
-            require $folder;
+        $file = $this->rootPath . '\\'. $class;
+        if (is_file($file)){
+            require $file;
         }else{
-            throw new \Exception('文件[' . $folder .']不存在',0);
+            throw new \Exception('文件[' . $file .']不存在',0);
         }
     }
 
