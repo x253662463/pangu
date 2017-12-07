@@ -6,10 +6,6 @@
 
 namespace Frame\Library;
 
-
-
-use Frame\Library\View;
-
 abstract class Controller
 {
 
