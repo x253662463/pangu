@@ -5,6 +5,7 @@
  */
 
 namespace Frame;
+use Frame\Library\Request;
 use Frame\Library\Router;
 
 /**
@@ -17,42 +18,7 @@ Class App {
     const VERSION = '0.0.0';
 
     public function __construct(Router $router){
-        $router->run();
-    }
-
-
-    /**
-     *程序默认运行函数
-     */
-    public function run(){
-
-        //注册自动加载机制
-        spl_autoload_register('Frame\APP::autoload');
-
-        //
-        register_shutdown_function('Frame\APP::fetalError');
-        set_error_handler('Frame\APP::Error');
-        set_exception_handler('Frame\APP::Exception');
-
-
-        $this->requireFunctions();
-
-        self::router();
-    }
-
-    /**
-     * 自动加载函数
-     * @param $class
-     * @throws \Exception
-     */
-    public function autoload($class){
-        $class .= '.class.php';
-        $folder = $this->rootPath . '\\'. $class;
-        if (is_file($folder)){
-            require $folder;
-        }else{
-            throw new \Exception('文件[' . $folder .']不存在',0);
-        }
+        $router->dispatch(new Request());
     }
 
     /**

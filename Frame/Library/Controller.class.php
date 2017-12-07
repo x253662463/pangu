@@ -31,20 +31,20 @@ abstract class Controller
      *展示视图
      */
     public function show(){
-        if ($this->viewData){
-            foreach ($this->viewData as $key => $value){
-                $$key = $value;
-            }
-        }
-        ob_start();
-        ;
-        if (is_file(ROOT_DIR . '/Views/' . CONTROLLER_NAME .'/'. ACTION_NAME . '.php')){
-            include ROOT_DIR . '/Views/' . CONTROLLER_NAME .'/'. ACTION_NAME . '.php';
-        }else{
-            errorOutput("视图未找到",0, "未找到视图文件：" . ROOT_DIR . '/Views/' . CONTROLLER_NAME .'/'. ACTION_NAME . '.php',__FILE__,__LINE__);
-        }
-        $content = ob_get_clean();
-        echo $content;
+//        if ($this->viewData){
+//            foreach ($this->viewData as $key => $value){
+//                $$key = $value;
+//            }
+//        }
+//        ob_start();
+//        ;
+//        if (is_file(ROOT_DIR . '/Views/' . CONTROLLER_NAME .'/'. ACTION_NAME . '.php')){
+//            include ROOT_DIR . '/Views/' . CONTROLLER_NAME .'/'. ACTION_NAME . '.php';
+//        }else{
+//            errorOutput("视图未找到",0, "未找到视图文件：" . ROOT_DIR . '/Views/' . CONTROLLER_NAME .'/'. ACTION_NAME . '.php',__FILE__,__LINE__);
+//        }
+//        $content = ob_get_clean();
+//        echo $content;
     }
 
 }

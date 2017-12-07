@@ -32,27 +32,35 @@ class Autoload
 
         $this->register();
 
-
-
-
-
     }
 
 
+    /**
+     *初始化系统文件路径
+     */
     public function initPaths(){
         $this->appPath = $this->rootPath . 'App' . DIRECTORY_SEPARATOR;
 
         $this->framePath = $this->rootPath . 'Frame' . DIRECTORY_SEPARATOR;
+
         $this->confPath = $this->framePath . 'Conf' . DIRECTORY_SEPARATOR;
         $this->funcPath = $this->framePath . 'functions' . DIRECTORY_SEPARATOR;
         $this->libPath = $this->framePath . 'Library' . DIRECTORY_SEPARATOR;
     }
 
+    /**
+     *默认注册函数，注册自动加载和错误处理
+     */
     public function register(){
         spl_autoload_register("Frame\Library\Autoload::autoload");
 
         $file = new File();
         $this->requireFunctions($file);
+
+        //TODO:重写错误处理机制
+        register_shutdown_function('Frame\APP::fetalError');
+        set_error_handler('Frame\APP::Error');
+        set_exception_handler('Frame\APP::Exception');
     }
 
     /**

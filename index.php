@@ -9,8 +9,5 @@ require 'Frame\Library\Autoload.class.php';
 
 new \Frame\Library\Autoload(dirname(__FILE__));
 
-
-$router = new \Frame\Library\Router();
-
-new \Frame\App($router);
+new \Frame\App(new \Frame\Library\Router());
 

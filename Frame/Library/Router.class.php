@@ -9,20 +9,54 @@ namespace Frame\Library;
 
 class Router
 {
-    public function run(){
-        $input = filter($_REQUEST);
 
-        $Controller = isset($input['controller']) ? $input['controller'] : 'Index';
-        $Action = isset($input['action']) ? $input['action'] : 'index';
+    protected $controllerPath = 'App\\Controllers\\';
 
-        define('CONTROLLER_NAME',$Controller);
-        define('ACTION_NAME',$Action);
+    /**
+     * 路由调度方法
+     * @param Request $request
+     */
+    public function dispatch(Request $request){
 
-        $controller = 'App\\Controllers\\' . $Controller . 'Controller';
+        $controller = $request->getController();
+        $action = $request->getAction();
+
+        $controller = $this->getFullController($controller);
+
+        $this->checkAction($controller,$action);
 
         $controller = new $controller();
-        //TODO:控制器和方法不存在的时候调整报错信息
-        $controller->$Action();
+        $controller->$action();
+    }
+
+    /**
+     * 获取完整的控制器类名
+     * @param $controller
+     * @return bool|string
+     */
+    public function getFullController($controller){
+        $fullController = $this->controllerPath . $controller . 'Controller';
+        if (class_exists($fullController)){
+            return $fullController;
+        }else{
+            //TODO:应该直接提示报错信息
+            return false;
+        }
+    }
+
+    /**
+     * 判断控制器中方法是否存在
+     * @param $controller
+     * @param $action
+     * @return bool
+     */
+    public function checkAction($controller, $action){
+        if (method_exists($controller,$action)){
+            return true;
+        }else{
+            //TODO:应该直接提示报错信息
+            return false;
+        }
     }
 
 }
