@@ -57,10 +57,10 @@ class Autoload
         $file = new File();
         $this->requireFunctions($file);
 
-        //TODO:重写错误处理机制
-        register_shutdown_function('Frame\APP::fetalError');
-        set_error_handler('Frame\APP::Error');
-        set_exception_handler('Frame\APP::Exception');
+        $error = new Error();
+        $error->register_shutdown_function();
+        $error->set_error_handler();
+        $error->set_exception_handler();
     }
 
     /**
