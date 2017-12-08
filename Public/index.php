@@ -5,9 +5,9 @@
  */
 
 
-require 'Frame\Library\Autoload.class.php';
+require '..\Frame\Library\Autoload.class.php';
 
-new \Frame\Library\Autoload(dirname(__FILE__));
+new \Frame\Library\Autoload(dirname(__FILE__) . '/../');
 
 new \Frame\App(new \Frame\Library\Router());
 
