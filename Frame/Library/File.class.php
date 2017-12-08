@@ -14,7 +14,7 @@ class File
      * @param $dir
      * @return 2|array
      */
-    public function getFiles($dir){
+    public static function getFiles($dir){
         return array_slice(scandir($dir),2);
     }
 }

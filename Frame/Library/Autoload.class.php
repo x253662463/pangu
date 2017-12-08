@@ -54,8 +54,7 @@ class Autoload
     public function register(){
         spl_autoload_register("Frame\Library\Autoload::autoload");
 
-        $file = new File();
-        $this->requireFunctions($file);
+        $this->requireFunctions();
 
         $error = new Error();
         $error->register_shutdown_function();
@@ -67,8 +66,8 @@ class Autoload
      * 包含所有方法文件夹下的方法文件
      * @param File $file
      */
-    public function requireFunctions(File $file){
-        $function_files = $file->getFiles($this->funcPath);
+    public function requireFunctions(){
+        $function_files = File::getFiles($this->funcPath);
         foreach ($function_files as $function_file){
             require $this->funcPath . $function_file;
         }
