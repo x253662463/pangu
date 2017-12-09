@@ -28,6 +28,8 @@ class Autoload
     {
         $this->rootPath = $path . DIRECTORY_SEPARATOR;
 
+        define('ROOT_PATH',$this->rootPath);
+
         $this->initPaths();
 
         $this->register();

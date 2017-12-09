@@ -10,7 +10,22 @@ namespace Frame\Library;
 class Router
 {
 
-    protected $controllerPath = 'App\\Controllers\\';
+    protected $controllerPath;
+
+    public function __construct(){
+
+        //TODO:这个是要从配置文件中获取的
+        $appPath = 'App';
+
+        if (!is_dir(ROOT_PATH . $appPath)){
+            $buider = new Builder($appPath);
+            $buider->generateApp();
+        }
+
+        $this->controllerPath = $appPath . DIRECTORY_SEPARATOR . 'Controllers' . DIRECTORY_SEPARATOR;
+
+
+    }
 
     /**
      * 路由调度方法
@@ -35,7 +50,7 @@ class Router
      * @return bool|string
      */
     public function getFullController($controller){
-        $fullController = $this->controllerPath . $controller . 'Controller';
+        $fullController = $this->controllerPath . $controller;
         if (class_exists($fullController)){
             return $fullController;
         }else{

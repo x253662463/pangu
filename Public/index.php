@@ -7,7 +7,7 @@
 
 require '..\Frame\Library\Autoload.class.php';
 
-new \Frame\Library\Autoload(dirname(__FILE__) . '/../');
+new \Frame\Library\Autoload(dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR);
 
 new \Frame\App(new \Frame\Library\Router());
 

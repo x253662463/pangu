@@ -20,8 +20,8 @@ class Request
     {
         $params = $_REQUEST;
 
-        $this->controller = $params['controller'] ? $params['controller'] : 'index';
-        $this->action = $params['action'] ? $params['action'] : 'index';
+        $this->controller = isset($params['controller']) ? $params['controller'] : 'index';
+        $this->action = isset($params['action']) ? $params['action'] : 'index';
     }
 
     /**
@@ -29,7 +29,7 @@ class Request
      * @return mixed
      */
     public function getController(){
-        return ucfirst($this->controller);
+        return ucfirst(strtolower($this->controller));
     }
 
     /**
