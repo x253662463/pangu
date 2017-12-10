@@ -13,9 +13,9 @@ class Log
 
     public static function write($message,$log_name = null){
         if (is_null($log_name)){
-            $log_name = ROOT_DIR . 'storage/logs/log_' . date('Y-m-d') . '.log';
+            $log_name = ROOT_PATH . 'storage/logs/log_' . date('Y-m-d') . '.log';
         }else{
-            $log_name = ROOT_DIR . $log_name;
+            $log_name = ROOT_PATH . $log_name;
         }
         $log_path = dirname($log_name);
         if (!is_dir($log_path)){
