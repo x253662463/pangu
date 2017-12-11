@@ -30,7 +30,7 @@ class Autoload
 
         define('ROOT_PATH',$this->rootPath);
 
-        $this->initPaths();
+        $this->initPaths($path);
 
         $this->register();
 
@@ -40,14 +40,14 @@ class Autoload
     /**
      *初始化系统文件路径
      */
-    public function initPaths(){
-        $this->appPath = $this->rootPath . 'App' . DIRECTORY_SEPARATOR;
+    public function initPaths($path){
 
-        $this->framePath = $this->rootPath . 'Frame' . DIRECTORY_SEPARATOR;
-
-        $this->confPath = $this->framePath . 'Conf' . DIRECTORY_SEPARATOR;
-        $this->funcPath = $this->framePath . 'functions' . DIRECTORY_SEPARATOR;
-        $this->libPath = $this->framePath . 'Library' . DIRECTORY_SEPARATOR;
+        define('ROOT_PATH',$path . DIRECTORY_SEPARATOR);
+        define('APP_PATH',ROOT_PATH . 'App' . DIRECTORY_SEPARATOR);
+        define('FRAME_PATH',ROOT_PATH . 'Frame' . DIRECTORY_SEPARATOR);
+        define('CONF_PATH',FRAME_PATH . 'Conf' . DIRECTORY_SEPARATOR);
+        define('FUNC_PATH',FRAME_PATH . 'functions' . DIRECTORY_SEPARATOR);
+        define('LIB_PATH',FRAME_PATH . 'Library' . DIRECTORY_SEPARATOR);
     }
 
     /**
