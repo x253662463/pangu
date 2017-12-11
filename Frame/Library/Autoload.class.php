@@ -26,9 +26,6 @@ class Autoload
 
     public function __construct($path)
     {
-        $this->rootPath = $path . DIRECTORY_SEPARATOR;
-
-        define('ROOT_PATH',$this->rootPath);
 
         $this->initPaths($path);
 
@@ -43,7 +40,9 @@ class Autoload
     public function initPaths($path){
 
         define('ROOT_PATH',$path . DIRECTORY_SEPARATOR);
+
         define('APP_PATH',ROOT_PATH . 'App' . DIRECTORY_SEPARATOR);
+
         define('FRAME_PATH',ROOT_PATH . 'Frame' . DIRECTORY_SEPARATOR);
         define('CONF_PATH',FRAME_PATH . 'Conf' . DIRECTORY_SEPARATOR);
         define('FUNC_PATH',FRAME_PATH . 'functions' . DIRECTORY_SEPARATOR);

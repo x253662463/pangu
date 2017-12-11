@@ -15,6 +15,9 @@ class Log
         $this->initPath();
     }
 
+    /**
+     *初始化日志文件路径，如果不存在先生成文件
+     */
     public function initPath(){
         $log_path = ROOT_PATH . $this->log_path;
         if (!is_dir($log_path)){
