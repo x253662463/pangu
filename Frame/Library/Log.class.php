@@ -11,6 +11,17 @@ class Log
 {
     public $log_path = 'storage/logs';
 
+    public function __construct(){
+        $this->initPath();
+    }
+
+    public function initPath(){
+        $log_path = ROOT_PATH . $this->log_path;
+        if (!is_dir($log_path)){
+            mkdir($log_path,777,true);
+        }
+    }
+
     public static function write($message,$log_name = null){
         if (is_null($log_name)){
             $log_name = ROOT_PATH . 'storage/logs/log_' . date('Y-m-d') . '.log';
