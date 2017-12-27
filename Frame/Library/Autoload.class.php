@@ -13,17 +13,6 @@ namespace Frame\Library;
  */
 class Autoload
 {
-
-    protected $rootPath;
-
-    protected $appPath;
-
-    protected $framePath;
-    protected $confPath;
-    protected $funcPath;
-    protected $libPath;
-
-
     public function __construct($path)
     {
 
@@ -68,9 +57,9 @@ class Autoload
      * @param File $file
      */
     public function requireFunctions(){
-        $function_files = File::getFiles($this->funcPath);
+        $function_files = File::getFiles(FUNC_PATH);
         foreach ($function_files as $function_file){
-            require $this->funcPath . $function_file;
+            require FUNC_PATH . $function_file;
         }
     }
 
@@ -81,11 +70,11 @@ class Autoload
      */
     public function autoload($class){
         $class .= '.class.php';
-        $file = $this->rootPath . '\\'. $class;
+        $file = ROOT_PATH . '\\'. $class;
         if (is_file($file)){
             require $file;
         }else{
-            throw new \Exception('文件[' . $file .']不存在',0);
+            throw new \Exception('File [' . $file .'] doesn\'t exist',0);
         }
     }
 
