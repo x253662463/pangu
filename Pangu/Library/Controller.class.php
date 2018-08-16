@@ -15,10 +15,15 @@ abstract class Controller
     public function __construct(){
     }
 
-    public function response($data){
+    public function response($status,$msg,$data){
         ob_end_clean();
         header('Content-type: application/json,charset=utf-8');
-        echo json_encode($data);
+        $response = [
+            'status' => $status,
+            'msg' => $msg,
+            'data' => $data
+        ];
+        die(json_encode($response));
     }
 
 }
