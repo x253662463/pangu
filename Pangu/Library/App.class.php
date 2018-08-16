@@ -4,9 +4,9 @@
  * Time: 2017/11/17 15:18
  */
 
-namespace Frame;
-use Frame\Library\Request;
-use Frame\Library\Router;
+namespace Pangu\Library;
+use Pangu\Library\Request;
+use Pangu\Library\Router;
 
 /**
  * 框架主类

@@ -4,7 +4,7 @@
  * Time: 2017/12/2 20:57
  */
 
-namespace Frame\Library;
+namespace Pangu\Library;
 
 
 class Log

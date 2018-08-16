@@ -4,7 +4,7 @@
  * Time: 2017/12/5 16:26
  */
 
-namespace Frame\Library;
+namespace Pangu\Library;
 
 /**
  * 自动加载类
@@ -13,36 +13,16 @@ namespace Frame\Library;
  */
 class Autoload
 {
-    public function __construct($path)
+    public function __construct()
     {
-
-        $this->initPaths($path);
-
         $this->register();
-
-    }
-
-
-    /**
-     *初始化系统文件路径
-     */
-    public function initPaths($path){
-
-        define('ROOT_PATH',$path . DIRECTORY_SEPARATOR);
-
-        define('APP_PATH',ROOT_PATH . 'App' . DIRECTORY_SEPARATOR);
-
-        define('FRAME_PATH',ROOT_PATH . 'Frame' . DIRECTORY_SEPARATOR);
-        define('CONF_PATH',FRAME_PATH . 'Conf' . DIRECTORY_SEPARATOR);
-        define('FUNC_PATH',FRAME_PATH . 'functions' . DIRECTORY_SEPARATOR);
-        define('LIB_PATH',FRAME_PATH . 'Library' . DIRECTORY_SEPARATOR);
     }
 
     /**
      *默认注册函数，注册自动加载和错误处理
      */
     public function register(){
-        spl_autoload_register("Frame\Library\Autoload::autoload");
+        spl_autoload_register("Pangu\Library\Autoload::autoload");
 
         $this->requireFunctions();
 
@@ -57,9 +37,9 @@ class Autoload
      * @param File $file
      */
     public function requireFunctions(){
-        $function_files = File::getFiles(FUNC_PATH);
+        $function_files = File::getFiles(PANGU_FUNC);
         foreach ($function_files as $function_file){
-            require FUNC_PATH . $function_file;
+            require PANGU_FUNC . $function_file;
         }
     }
 
@@ -70,11 +50,11 @@ class Autoload
      */
     public function autoload($class){
         $class .= '.class.php';
-        $file = ROOT_PATH . '\\'. $class;
+        $file = PANGU_ROOT . '\\'. $class;
         if (is_file($file)){
             require $file;
         }else{
-            throw new \Exception('File [' . $file .'] doesn\'t exist',0);
+            throw new \Exception('File [' . $file .'] doesn\'t exist',4001);
         }
     }
 

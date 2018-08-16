@@ -32,13 +32,17 @@ function filter($params){
  * @param $line int 错误行数
  */
 function errorOutput($title, $errorNum, $message, $file, $line){
-    header("Content-type: text/html; charset=utf-8");
-    echo "<h1>$title</h1>";
-    echo "Error Number:" . $errorNum . "<br>";
-    echo "Error Message:" . $message . "<br>";
-    echo "Error File:" . $file . "<br>";
-    echo "Error Line:" . $line . "<br>";
-    exit;
+    header("Content-type: json; charset=json");
+    $return = [
+        'code' => $errorNum,
+        'message' => $title,
+        'data' => [
+            'message' => $message,
+            'file' => $file,
+            'line' => $line
+        ]
+    ];
+    die(json_encode($return));
 }
 
 

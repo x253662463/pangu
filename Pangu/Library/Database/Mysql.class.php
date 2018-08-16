@@ -3,9 +3,9 @@
  * Creator: xie
  * Time: 2017/11/28 16:03
  */
-namespace Frame\Library\Database;
+namespace Pangu\Library\Database;
 
-use Frame\Library\DatabaseDriver;
+use Pangu\Library\DatabaseDriver;
 
 class Mysql extends DatabaseDriver
 {

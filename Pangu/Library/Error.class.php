@@ -4,22 +4,22 @@
  * Time: 2017/12/8 13:47
  */
 
-namespace Frame\Library;
+namespace Pangu\Library;
 
 
 class Error
 {
 
     public function register_shutdown_function(){
-        register_shutdown_function('Frame\Library\Error::fetalError');
+        register_shutdown_function('Pangu\Library\Error::fetalError');
     }
 
     public function set_error_handler(){
-        set_error_handler('Frame\Library\Error::error');
+        set_error_handler('Pangu\Library\Error::error');
     }
 
     public function set_exception_handler(){
-        set_exception_handler('Frame\Library\Error::exception');
+        set_exception_handler('Pangu\Library\Error::exception');
     }
 
     /**
@@ -28,7 +28,7 @@ class Error
     public static function fetalError(){
         if ($e = error_get_last()){
             ob_end_clean();
-            errorOutput('致命错误',$e['type'],$e['message'],$e['file'],$e['line']);
+            errorOutput('fetalError',$e['type'],$e['message'],$e['file'],$e['line']);
         };
     }
 
@@ -40,7 +40,7 @@ class Error
      * @param $errline
      */
     public static function error($errno, $errstr, $errfile, $errline){
-        errorOutput('系统错误',$errno,$errstr,$errfile,$errline);
+        errorOutput('error',$errno,$errstr,$errfile,$errline);
     }
 
     /**
@@ -48,7 +48,7 @@ class Error
      * @param \Exception $e
      */
     public static function exception($e){
-        errorOutput('异常',$e->getCode(),$e->getMessage(),$e->getFile(),$e->getLine());
+        errorOutput('exception',$e->getCode(),$e->getMessage(),$e->getFile(),$e->getLine());
     }
 
 }

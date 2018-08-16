@@ -3,7 +3,7 @@
  * Creator: xie
  * Time: 2017/11/28 16:06
  */
-namespace Frame\Library;
+namespace Pangu\Library;
 
 class Database
 {

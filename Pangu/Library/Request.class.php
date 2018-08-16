@@ -4,7 +4,7 @@
  * Time: 2017/12/7 13:47
  */
 
-namespace Frame\Library;
+namespace Pangu\Library;
 
 
 class Request

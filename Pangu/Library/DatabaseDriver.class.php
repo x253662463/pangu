@@ -4,7 +4,7 @@
  * Time: 2017/11/28 17:40
  */
 
-namespace Frame\Library;
+namespace Pangu\Library;
 
 use PDO;
 

@@ -4,13 +4,22 @@
  * Time: 2017/12/6 17:10
  */
 
-namespace Frame\Library;
+namespace Pangu\Library;
 
 
 class Router
 {
+    private static $method = [
+        'get',
+        'post',
+        'put',
+        'delete',
+        'patch'
+    ];
 
-    protected $controllerPath;
+    private static $restful = [
+        'index'
+    ];
 
     public function __construct(){
 

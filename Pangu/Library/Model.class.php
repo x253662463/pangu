@@ -7,7 +7,7 @@
 namespace Models;
 
 
-use Frame\Library\Database;
+use Pangu\Library\Database;
 
 class Model
 {

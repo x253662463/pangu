@@ -4,7 +4,7 @@
  * Time: 2017/12/8 17:14
  */
 
-namespace Frame\Library;
+namespace Pangu\Library;
 
 
 class Builder

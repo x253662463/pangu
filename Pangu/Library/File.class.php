@@ -4,7 +4,7 @@
  * Time: 2017/12/4 10:42
  */
 
-namespace Frame\Library;
+namespace Pangu\Library;
 
 
 class File
