@@ -10,15 +10,15 @@ namespace Pangu\Library;
 class Error
 {
 
-    public function register_shutdown_function(){
+    public static function register_shutdown_function(){
         register_shutdown_function('Pangu\Library\Error::fetalError');
     }
 
-    public function set_error_handler(){
+    public static function set_error_handler(){
         set_error_handler('Pangu\Library\Error::error');
     }
 
-    public function set_exception_handler(){
+    public static function set_exception_handler(){
         set_exception_handler('Pangu\Library\Error::exception');
     }
 

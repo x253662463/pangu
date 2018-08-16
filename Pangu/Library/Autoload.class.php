@@ -13,48 +13,45 @@ namespace Pangu\Library;
  */
 class Autoload
 {
-    public function __construct()
-    {
-        $this->register();
-    }
-
     /**
      *默认注册函数，注册自动加载和错误处理
      */
-    public function register(){
+    public static function register()
+    {
         spl_autoload_register("Pangu\Library\Autoload::autoload");
 
-        $this->requireFunctions();
+        self::requireFunctions();
 
-        $error = new Error();
-        $error->register_shutdown_function();
-        $error->set_error_handler();
-        $error->set_exception_handler();
+        Error::register_shutdown_function();
+        Error::set_error_handler();
+        Error::set_exception_handler();
     }
 
     /**
-     * 包含所有方法文件夹下的方法文件
+     * 包含方法文件夹下的方法文件
      * @param File $file
      */
-    public function requireFunctions(){
+    public static function requireFunctions()
+    {
         $function_files = File::getFiles(PANGU_FUNC);
-        foreach ($function_files as $function_file){
+        foreach ($function_files as $function_file) {
             require PANGU_FUNC . $function_file;
         }
     }
 
     /**
-     * 自动加载函数
+     * 自动引入文件函数
      * @param $class
      * @throws \Exception
      */
-    public function autoload($class){
+    public static function autoload($class)
+    {
         $class .= '.class.php';
-        $file = PANGU_ROOT . '\\'. $class;
-        if (is_file($file)){
+        $file = PANGU_ROOT . '\\' . $class;
+        if (is_file($file)) {
             require $file;
-        }else{
-            throw new \Exception('File [' . $file .'] doesn\'t exist',4001);
+        } else {
+            throw new \Exception('File [' . $file . '] doesn\'t exist', 4001);
         }
     }
 
