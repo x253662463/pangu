@@ -14,11 +14,13 @@ class Router
         'post',
         'put',
         'delete',
-        'patch'
     ];
 
     private static $restful = [
-        'index'
+        'get' => ['index','detail'],
+        'post' => 'add',
+        'put' => 'update',
+        'delete' => 'delete'
     ];
 
     public function __construct(){
